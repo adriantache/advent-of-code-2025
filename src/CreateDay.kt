@@ -6,13 +6,21 @@ import java.net.URI
 
 // TODO: update to 2025
 private const val YEAR = 2024
-private const val DAY = 1
+private const val DAY = 2
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
 fun main() {
+    checkDay()
+
     createInputFile()
     createCodeTemplate()
+}
+
+private fun checkDay() {
+    val inputFile = getInputFile(DAY, YEAR)
+
+    if (inputFile.exists()) error("Folder already exists for $DAY/$YEAR!")
 }
 
 private fun createInputFile() {
@@ -58,7 +66,7 @@ private val FILE_TEMPLATE = """
      * Solution for $AOC_URL
      */
     fun main() {
-//        val input = getInput($DAY, $YEAR)
+    //    val input = getInput($DAY, $YEAR)
         val input = example
         
         solution1(input)
