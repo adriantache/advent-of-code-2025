@@ -4,9 +4,8 @@ import java.io.File
 import java.net.HttpURLConnection
 import java.net.URI
 
-// TODO: update to 2025
-private const val YEAR = 2024
-private const val DAY = 2
+private const val YEAR = 2025
+private const val DAY = 1
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
