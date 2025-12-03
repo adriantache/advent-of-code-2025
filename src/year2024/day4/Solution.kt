@@ -1,4 +1,4 @@
-package `2024`.`4`
+package year2024.day4
 
 import util.getInput
 

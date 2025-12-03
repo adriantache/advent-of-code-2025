@@ -57,7 +57,7 @@ private fun getInputFromServer(): String {
 }
 
 private val FILE_TEMPLATE = """
-    package `$YEAR`.`$DAY`
+    package `year$YEAR`.day`$DAY`
 
     import util.getInput
 

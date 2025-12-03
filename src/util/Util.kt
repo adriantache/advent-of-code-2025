@@ -34,4 +34,4 @@ fun getCodeFile(
         .also { File(it.parent).mkdirs() }
 }
 
-private fun getRootPath(year: Int, day: Int): String = "$SOURCE_ROOT/$year/$day"
+private fun getRootPath(year: Int, day: Int): String = "$SOURCE_ROOT/year$year/day$day"
