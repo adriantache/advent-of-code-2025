@@ -5,7 +5,7 @@ import java.net.HttpURLConnection
 import java.net.URI
 
 private const val YEAR = 2025
-private const val DAY = 4
+private const val DAY = 5
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
@@ -57,7 +57,7 @@ private fun getInputFromServer(): String {
 }
 
 private val FILE_TEMPLATE = """
-    package `year$YEAR`.day`$DAY`
+    package year$YEAR.day$DAY
 
     import util.getInput
 
