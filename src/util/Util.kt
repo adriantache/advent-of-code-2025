@@ -23,7 +23,6 @@ fun getInputFile(
 ): File {
     val root = getRootPath(year, day)
     return File(root, INPUT_FILE)
-        .also { File(it.parent).mkdirs() }
 }
 
 fun getCodeFile(

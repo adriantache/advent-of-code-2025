@@ -23,8 +23,10 @@ private fun checkDay() {
 }
 
 private fun createInputFile() {
-    val destinationFile = getInputFile(DAY, YEAR)
     val contents = getInputFromServer()
+    val destinationFile = getInputFile(DAY, YEAR).also {
+        File(it.parent).mkdirs()
+    }
 
     destinationFile.writeText(contents)
 }
