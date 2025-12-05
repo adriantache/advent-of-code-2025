@@ -9,11 +9,12 @@ const val CODE_FILE = "Solution.kt"
 fun getInput(
     day: Int,
     year: Int,
+    allowBlankLines: Boolean = false,
 ): List<String> {
     val file = getInputFile(day, year)
-    val contents = file.readText()
+    val contents = file.readText().split("\n")
 
-    return contents.split("\n").filterNot { it.isBlank() }
+    return if (allowBlankLines) contents else contents.filterNot { it.isBlank() }
 }
 
 fun getInputFile(
