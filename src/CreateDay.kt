@@ -5,7 +5,7 @@ import java.net.HttpURLConnection
 import java.net.URI
 
 private const val YEAR = 2025
-private const val DAY = 6
+private const val DAY = 7
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
