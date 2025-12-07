@@ -5,15 +5,18 @@ import java.net.HttpURLConnection
 import java.net.URI
 
 private const val YEAR = 2025
-private const val DAY = 7
+private const val DAY = 8
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
 fun main() {
     checkDay()
 
+    println("Fetching $DAY/$YEAR...")
     createInputFile()
+    println("Creating code templates...")
     createCodeTemplate()
+    println("Done.")
 }
 
 private fun checkDay() {
@@ -52,6 +55,7 @@ private fun getInputFromServer(): String {
     }
 
     val body = conn.inputStream.bufferedReader().use { it.readText() }
+    println("Received input file.")
 
     conn.disconnect()
 
@@ -70,8 +74,11 @@ private val FILE_TEMPLATE = """
     //    val input = getInput($DAY, $YEAR)
         val input = example
         
+        println()
         solution1(input)
+        println()
         solution2(input)
+        println()
     }
     
     private fun solution1(input: List<String>) {
