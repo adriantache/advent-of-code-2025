@@ -5,18 +5,20 @@ import java.net.HttpURLConnection
 import java.net.URI
 
 private const val YEAR = 2025
-private const val DAY = 8
+private const val DAY = 9
 private const val AOC_URL = "https://adventofcode.com/${YEAR}/day/${DAY}"
 private const val AOC_INPUT_URL = "$AOC_URL/input"
 
 fun main() {
     checkDay()
 
+    println()
     println("Fetching $DAY/$YEAR...")
     createInputFile()
     println("Creating code templates...")
     createCodeTemplate()
     println("Done.")
+    println()
 }
 
 private fun checkDay() {

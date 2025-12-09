@@ -12,7 +12,7 @@ fun main() {
 //    val input = example
 
     println()
-//    solution1(input)
+    solution1(input)
     println()
     solution2(input)
     println()
@@ -80,13 +80,57 @@ private fun Matrix.hitBeamSplitters(startPosition: Position, allowRepeats: Boole
     }
 }
 
+private var amplifiedPositions = mutableMapOf<Position, Long>()
+
 private fun solution2(input: List<String>) {
     val matrix = Matrix.fromInput(input)
-    val startPosition = matrix.getStartPosition()
+    val startPosition = matrix.getStartPosition().plusY(1)
 
-    matrix.hitBeamSplitters(startPosition, allowRepeats = true)
+    amplifiedPositions += startPosition to 1
 
-    println("Solution 2: $terminatedBeams")
+    matrix.hitBeamSplittersByLayer()
+
+    val result = amplifiedPositions.values.sumOf { it }
+
+    println("Solution 2: $result")
+}
+
+private fun Matrix.hitBeamSplittersByLayer() {
+    while (this.hasLowerLevel(amplifiedPositions)) {
+        val previousLevel = amplifiedPositions
+        amplifiedPositions = mutableMapOf()
+
+        previousLevel.forEach { this.addLowerLayer(it.key, it.value) }
+    }
+}
+
+private fun Matrix.hasLowerLevel(amplifiedPosition: MutableMap<Position, Long>) =
+    this.get(amplifiedPosition.keys.first().plusY(1)) != null
+
+private fun Matrix.addLowerLayer(position: Position, power: Long) {
+    assert(power > 0) {
+        "Failed at $position $power $amplifiedPositions"
+    }
+    val nextPosition = position.plusY(1)
+    val next = this.get(nextPosition)
+
+    when (next) { // No emitters next to each other, so we don't need to cover that case.
+        null -> error("Unexpected lower level $nextPosition for $size")
+
+        "^" -> {
+            val leftNextPosition = nextPosition.minusX(1)
+            if (get(leftNextPosition) != null) {
+                amplifiedPositions[leftNextPosition] = (amplifiedPositions[leftNextPosition] ?: 0) + power
+            }
+
+            val rightNextPosition = nextPosition.plusX(1)
+            if (get(rightNextPosition) != null) {
+                amplifiedPositions[rightNextPosition] = (amplifiedPositions[rightNextPosition] ?: 0) + power
+            }
+        }
+
+        else -> amplifiedPositions[nextPosition] = (amplifiedPositions[nextPosition] ?: 0) + power
+    }
 }
 
 @Suppress("unused")

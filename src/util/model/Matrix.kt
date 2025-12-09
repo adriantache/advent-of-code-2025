@@ -1,6 +1,8 @@
 package util.model
 
 class Matrix(private var input: List<List<String>>) {
+    val size = input.first().size to input.size
+
     fun get(position: Position) = get(position.x, position.y)
 
     fun get(x: Int, y: Int) = if (isValidCoordinate(x, y)) input[y][x] else null
