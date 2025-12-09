@@ -47,7 +47,6 @@ private fun Matrix.hitBeamSplitters(startPosition: Position, allowRepeats: Boole
     when (next) {
         null -> {
             terminatedBeams += 1
-            println("Terminated beams: $terminatedBeams")
             return
         }
 
